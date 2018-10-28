@@ -56,11 +56,17 @@ create table flightData
 	 origin			varchar(20),
 	 destination	varchar(20),
 	 distance		int,
-	 primary key (id)
+	 primary key (id,aircraft,SGDT)
 	);
 
 -- COPY persons(first_name,last_name,dob,email) 
 -- FROM 'C:\tmp\persons.csv' DELIMITER ',' CSV HEADER;
+
+LOAD DATA INFILE '/var/lib/mysql-files/flights.csv' 
+INTO TABLE flightData 
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"' 
+LINES TERMINATED BY '\n';
 
 LOAD DATA INFILE '/var/lib/mysql-files/aircrafts.csv' 
 INTO TABLE aircraft 
